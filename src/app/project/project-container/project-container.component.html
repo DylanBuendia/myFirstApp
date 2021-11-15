@@ -1,0 +1,12 @@
+<ngprj-section-header
+[title]="'I miei progetti'"
+[button]=" {label : 'Val alla Dashboard', link : '/home'} "
+>
+</ngprj-section-header>
+
+<ngprj-project-list [progetti]="projects" (selected)="selectProject($event)"></ngprj-project-list>
+
+<ngprj-project-detail [project]="selectedProject"></ngprj-project-detail>
+
+<hr>
+<ngprj-project-form (submitted)="submitProjectForm($event)"></ngprj-project-form>
