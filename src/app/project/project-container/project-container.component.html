@@ -4,7 +4,10 @@
 >
 </ngprj-section-header>
 
-<ngprj-project-list [progetti]="projects" (selected)="selectProject($event)"></ngprj-project-list>
+<ng-container *ngIf=" projects$ | async as projects">
+  <ngprj-project-list [progetti]="projects" (selected)="selectProject($event)"></ngprj-project-list>
+</ng-container>
+
 
 <ngprj-project-detail [project]="selectedProject"></ngprj-project-detail>
 
