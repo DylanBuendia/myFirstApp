@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Project } from '@app/models/Project';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ProjectService } from '../project.service';
 
 @Component({
@@ -8,16 +9,11 @@ import { ProjectService } from '../project.service';
   templateUrl: './project-container.component.html',
   styleUrls: ['./project-container.component.css']
 })
-export class ProjectContainerComponent implements OnInit, OnDestroy {
-  selectedProject! : Project;
-
-  subscription! : Subscription;
-
-  // projects : Project[]= [];
+export class ProjectContainerComponent implements OnInit {
 
   projects$! : Observable<Project[]>;
 
-  constructor(private projectService : ProjectService) {}
+  constructor(private projectService : ProjectService, private router : Router) {}
 
   ngOnInit(): void {
     this.projects$ = this.projectService.getAll();
@@ -25,14 +21,10 @@ export class ProjectContainerComponent implements OnInit, OnDestroy {
   }
 
   selectProject(project:Project){
-    this.subscription = this.projectService.get(project.id).subscribe(data => this.selectedProject = data);
+    this.router.navigate(['projects', 'detail', project.id])
   }
 
   submitProjectForm(project : Project){
     this.projectService.add(project).subscribe(data=>this.projects$ = this.projectService.getAll());
-  }
-
-  ngOnDestroy() : void{
-    this.subscription.unsubscribe();
   }
 }
