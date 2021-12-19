@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Project } from '@app/models/Project';
 import { Observable } from 'rxjs';
-import { ProjectService } from '../project.service';
+import { ProjectService } from '../../services/project.service';
 
 @Component({
-  selector: 'ngprj-project-container',
-  templateUrl: './project-container.component.html',
-  styleUrls: ['./project-container.component.css']
+  selector: 'ngprj-project-dashboard',
+  templateUrl: './project-dashboard.component.html',
+  styleUrls: ['./project-dashboard.component.css']
 })
-export class ProjectContainerComponent implements OnInit {
+export class ProjectDashboardComponent implements OnInit {
 
   projects$! : Observable<Project[]>;
 

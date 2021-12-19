@@ -1,7 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Project } from '@app/models/Project';
-import { LogService } from '@app/shared/log.service';
+import { LogService } from '@app/services/log.service';
+
 import { BehaviorSubject, Observable, throwError} from 'rxjs';
 import { tap, find, retry, catchError } from 'rxjs/operators';
 
